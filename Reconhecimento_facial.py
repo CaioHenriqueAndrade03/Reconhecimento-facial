@@ -27,18 +27,20 @@ while True:
         
         
         font = cv2.FONT_HERSHEY_COMPLEX
+        texto_rosto = f"{(x + w // 2)}, {(y + h // 2)} cordenada rosto"
         cv2.putText(video, texto_rosto, (x, y - 10), font, 0.5, cor_do_texto, grossura_da_letra, cv2.LINE_AA)
 
         olhos = face_glasses.detectMultiScale(videoCinza)
 
         for (gx, gy, gw, gh) in olhos:
             cv2.rectangle(video, (gx, gy), (gx + gw, gy + gh), (0, 255, 0), 2)
+            texto_olho = f"{(gx + gw // 2)}, {(gy + gh // 2)} cordenada olho"
             cv2.putText(video, texto_olho, (gx, gy - 10), font, 0.5, cor_do_texto, grossura_da_letra, cv2.LINE_AA)
 
 
         #REGRAS DOS TEXTO:
-        texto_olho = f"{(gx + gw // 2)}, {(gy + gh // 2)} cordenada olho"
-        texto_rosto = f"{(x + w // 2)}, {(y + h // 2)} cordenada rosto"
+        
+        
     cv2.imshow('Reconhecimento Facial', video)
     key = cv2.waitKey(1) & 0xFF
 
